@@ -1,5 +1,14 @@
 # FreshMarket — Node + MySQL
 
+**Live site:** <https://freshmarket-qcof.onrender.com/> · **Health check:** <https://freshmarket-qcof.onrender.com/api/health>
+
+| | |
+|---|---|
+| Front end | HTML, Bootstrap 5, vanilla JS — 5 pages |
+| Back end | Node 18+, Express, `express-session` (MySQL store) |
+| Database | MySQL 8 — local for development, **Aiven** free tier in production |
+| Hosting | **Render** free web service, auto-deploys from `main` |
+
 The shop used to keep accounts, sessions and orders in `localStorage`. They now
 live in **MySQL**, reached through a small **Express** API. The pages are served
 by the same server, so the session cookie and the API share one origin.
@@ -129,7 +138,7 @@ npm run smoke   # end-to-end against the running server (uses MySQL)
 
 | Method | Path | Auth | Purpose |
 |---|---|---|---|
-| GET | `/api/health` | — | `{status, database}` — used by the navbar banner |
+| GET | `/api/health` | — | `{status, database}` — used to check the deployment |
 | POST | `/api/auth/register` | — | `{name, email, password}` → creates the account **and** the session |
 | POST | `/api/auth/login` | — | `{email, password}` → session cookie |
 | POST | `/api/auth/logout` | — | destroys the session |
@@ -175,13 +184,75 @@ Groceries Webpage/
 | `ER_BAD_DB_ERROR` | Run `npm run migrate` |
 | `EADDRINUSE :5000` | Another process uses port 5000 — change `PORT` in `.env` |
 | `npm.ps1 cannot be loaded` | PowerShell blocks npm scripts — use `npm.cmd install` and `npm.cmd start` instead (or run npm from Command Prompt) |
-| Navbar says "Backend offline" | You opened the `.html` file directly, or the server is stopped |
-| Navbar says "Database unreachable" | The server runs but cannot query MySQL |
 
 ## Notes
 
 - This is a demo shop: card/UPI fields are **not** sent to any payment gateway.
 - Products still live in `index.html` (they were never in `localStorage`). Moving
   them into a `products` table is the natural next step.
-- Change `secure: false` to `true` in `server/app.js` if you ever put this behind
-  HTTPS.
+- The session cookie is automatically `Secure` when `NODE_ENV=production`, and
+  `trust proxy` is enabled so HTTPS works behind Render's proxy.
+
+---
+
+## Deployment (already live)
+
+| | |
+|---|---|
+| Live site | <https://freshmarket-qcof.onrender.com/> |
+| Health | <https://freshmarket-qcof.onrender.com/api/health> |
+| Host | Render — Web Service `freshmarket-shyam`, region Singapore, free instance |
+| Database | Aiven MySQL (free plan), database `defaultdb`, TLS via `DB_SSL=true` |
+| Repo | <https://github.com/Shyam-314/freshmarket> — pushes to `main` auto-deploy |
+
+### Environment variables on Render
+
+| Key | Value |
+|---|---|
+| `NODE_ENV` | `production` |
+| `SESSION_SECRET` | long random string (never commit it) |
+| `DB_HOST` / `DB_PORT` | from Aiven → Overview → Connection information |
+| `DB_USER` | `avnadmin` |
+| `DB_PASSWORD` | Aiven database password |
+| `DB_NAME` | `defaultdb` |
+| `DB_SSL` | `true` |
+
+`PORT` is provided by Render — do not set it.
+
+### Changing the live site
+
+```powershell
+cd "C:\Users\M SHYAM\Desktop\Groceries Webpage"
+# edit + test locally at http://localhost:5000
+git add -A
+git commit -m "describe the change"
+git push
+```
+
+Render rebuilds automatically. Schema changes are applied to Aiven with the same
+`$env:` override trick used during setup:
+
+```powershell
+$env:DB_HOST="..."; $env:DB_PORT="..."; $env:DB_USER="avnadmin"
+$env:DB_PASSWORD="..."; $env:DB_NAME="defaultdb"; $env:DB_SSL="true"
+npm run migrate
+```
+
+### Testing the live deployment
+
+```powershell
+$env:SMOKE_URL="https://freshmarket-qcof.onrender.com"
+npm run smoke
+```
+
+The first request after ~15 minutes of inactivity can take 30–60 seconds: the
+free Render instance sleeps when nobody visits. Aiven may also power off an idle
+free database; you can power it back on from the Aiven console and the data is
+kept.
+
+### Renaming the URL
+
+Render assigns the `*.onrender.com` address at creation, so renaming the service
+does not change it. A branded link needs a custom domain: **Settings → Custom
+Domains** in Render, then a CNAME at your DNS provider (or a free
+`*.is-a.dev` subdomain).
