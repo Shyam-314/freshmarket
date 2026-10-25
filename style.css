@@ -1,0 +1,318 @@
+/* style.css */
+
+/* General Body Styling */
+body {
+    background-color: #ecf1d6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    color: #2b2b2b;
+}
+
+.navbar {
+    background-color: #e9e0c2;
+}
+
+/* Custom Hero Section */
+
+.hero-section {
+    background: radial-gradient(circle at 15% 15%, #1f6b42 0%, #123a24 45%, #0b2416 100%);
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.hero-pill {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: #e7f5ec;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+}
+
+.hero-collage {
+    position: relative;
+}
+
+.hero-photo {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-photo-main {
+    height: 380px;
+}
+
+.hero-photo-side {
+    height: 170px;
+    margin-top: 1rem;
+}
+
+@media (min-width: 992px) {
+    .hero-collage {
+        padding: 0 0 2.5rem 2rem;
+    }
+
+    .hero-photo-main {
+        height: 440px;
+    }
+
+    .hero-photo-side {
+        position: absolute;
+        right: -1rem;
+        bottom: 0;
+        width: 58%;
+        height: 200px;
+        margin-top: 0;
+        border: 6px solid #0b2416;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-photo-main {
+        height: 260px;
+    }
+
+    .hero-photo-side {
+        height: 150px;
+    }
+}
+
+/* Product Card Hover Effects */
+/* style.css */
+
+.product-card {
+    background-color: #ffffff;
+    position: relative; /* Enables z-index layering */
+    transition: transform 0.5s ease, box-shadow 0.5s ease, z-index 0s;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1; /* Default layer height */
+}
+
+.product-card:hover {
+    transform: scale(1.1); /* Scales card & internal content 2x */
+    z-index: 1000; /* Brings the card on top of all adjacent cards */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Image standardization inside cards */
+
+/* 1. Reduce image height (Changed from 200px to 130px) */
+.product-card img {
+    height: 150px; 
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+/* 2. Reduce interior padding inside cards */
+.product-card .card-body {
+    padding: 0.75rem; 
+}
+
+/* 3. Make card titles and text slightly smaller */
+.product-card .card-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.product-card h6 {
+    font-size: 0.9rem;
+}
+
+/* 4. Make the Add to Cart button smaller */
+.product-card .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+}
+
+/* Section Header styling */
+section h2 {
+    color: #383d39;
+    font-weight: 600;
+}
+
+/* Navigation offset for sticky header during anchor links */
+section {
+    scroll-margin-top: 80px; 
+}
+
+/* ---------- Checkout page ---------- */
+
+.checkout-card {
+    border: none;
+    border-radius: 12px;
+}
+
+.summary-card {
+    position: sticky;
+    top: 92px;
+}
+
+.checkout-thumb {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex: 0 0 46px;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+.checkout-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.65rem 0;
+}
+
+.checkout-line + .checkout-line {
+    border-top: 1px dashed #e3e3e3;
+}
+
+.payment-option {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.payment-option:hover {
+    border-color: #9fd3b4;
+}
+
+.payment-option.active {
+    border-color: #198754;
+    background: #f2f9f4;
+}
+
+.checkout-success-icon {
+    font-size: 3.5rem;
+}
+
+@media (max-width: 991.98px) {
+    .summary-card {
+        position: static;
+    }
+}
+
+/* ---------- Account / profile ---------- */
+
+.profile-avatar,
+.profile-avatar-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #198754;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    flex: 0 0 auto;
+}
+
+.profile-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.profile-avatar:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(25, 135, 84, 0.35);
+}
+
+.profile-avatar-lg {
+    width: 84px;
+    height: 84px;
+    font-size: 1.9rem;
+}
+
+.profile-order {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+}
+
+/* ---------- Auth pages ---------- */
+
+.auth-body {
+    background-color: #eef2dc;
+}
+
+.auth-main {
+    max-width: 1040px;
+    margin-top: clamp(1.5rem, 4vw, 3.25rem);
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.auth-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.auth-aside {
+    background: linear-gradient(160deg, #14532d 0%, #198754 100%);
+    color: #ffffff;
+    padding: 2.75rem;
+    align-items: center;
+}
+
+.auth-aside-icon {
+    font-size: 2.1rem;
+    margin-bottom: 1.1rem;
+    opacity: 0.95;
+}
+
+.password-toggle {
+    min-width: 48px;
+}
+
+/* ---------- Product sections ---------- */
+
+.product-hidden {
+    display: none !important;
+}
+
+.section-more .btn {
+    font-size: 0.9rem;
+}
+
+#no-results {
+    color: #6c757d;
+}
+
+/* ---------- Marketing strip + footer ---------- */
+
+.why-card {
+    background-color: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.site-footer {
+    background-color: #16211b;
+}
+
+.site-footer h2,
+.site-footer h3 {
+    letter-spacing: 0.02em;
+}
+
+.site-footer a {
+    color: rgba(255, 255, 255, 0.62);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.site-footer a:hover {
+    color: #ffffff;
+}

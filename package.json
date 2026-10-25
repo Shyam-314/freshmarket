@@ -1,0 +1,22 @@
+{
+  "name": "freshmarket",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FreshMarket grocery store — static front end plus a Node/Express API backed by MySQL",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "migrate": "node server/scripts/migrate.js",
+    "smoke": "node server/scripts/smoke.js",
+    "test": "node server/test-api.js && node server/test-frontend.js && node server/test-sections.js && node server/test-production-cookie.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.18.0",
+    "mysql2": "^3.11.0"
+  }
+}

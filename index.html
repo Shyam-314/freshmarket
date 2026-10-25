@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fresh fruits, vegetables, meat, dairy and pantry staples delivered from local farms.">
+    <title>FreshMarket | Online Grocery</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%AC%3C/text%3E%3C/svg%3E">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand fw-bold text-success" href="#"><i class="fas fa-leaf"></i> FreshMarket</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Nav Links -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="#fruits">Fruits</a></li>
+                <li class="nav-item"><a class="nav-link" href="#vegetables">Vegetables</a></li>
+                <li class="nav-item"><a class="nav-link" href="#meat">Meat & Fish</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nuts">Nuts & Seeds</a></li>
+                <li class="nav-item"><a class="nav-link" href="#grains">Grains</a></li>
+                <li class="nav-item"><a class="nav-link" href="#animal-products">Dairy & Eggs</a></li>
+            </ul>
+            
+            <!-- Right-aligned items group -->
+            <div class="d-flex align-items-center gap-3 ms-auto">
+
+                <!-- Search Bar & Cart Button -->
+                <div class="d-flex align-items-center gap-2">
+                    <input class="form-control" type="search" id="searchInput" placeholder="Search food items..." aria-label="Search">
+                    <button class="btn btn-outline-success text-nowrap" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fas fa-shopping-cart me-1"></i> Cart 
+                        <span id="cart-count" class="badge bg-success ms-1">0</span>
+                    </button>
+                </div>
+
+                <!-- Sign In / Profile avatar -->
+                <div class="d-flex align-items-center">
+                    <a class="btn btn-outline-success fw-bold text-nowrap" id="signin-btn" href="signin.html">
+                        Sign In
+                    </a>
+                    <a href="profile.html" id="profile-btn" class="profile-avatar d-none"
+                       title="My profile" aria-label="My profile">
+                        <span id="profile-initials">?</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white">
+        <div class="container py-5">
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-6">
+                    <span class="badge rounded-pill hero-pill mb-3">
+                        <i class="fas fa-leaf me-1"></i>Farm fresh, every morning
+                    </span>
+                    <h1 class="display-4 fw-bold mb-3 lh-sm">Fresh food<br>delivered daily</h1>
+                    <p class="lead text-white-50 mb-4">
+                        Fruits, vegetables, dairy and pantry staples from local farms &mdash;
+                        picked today, at your door tomorrow.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <a href="#fruits" class="btn btn-success btn-lg px-4 fw-semibold">Shop now</a>
+                        <a href="signup.html" class="btn btn-outline-light btn-lg px-4">Create account</a>
+                    </div>
+                    <div id="hero-chips" class="d-flex flex-wrap gap-3 small text-white-50">
+                        <span><i class="fas fa-truck-fast me-1"></i>Free delivery over &#8377;499</span>
+                        <span><i class="fas fa-clock me-1"></i>Same-day slots</span>
+                        <span><i class="fas fa-shield-halved me-1"></i>Secure checkout</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-collage">
+                        <img src="images/hero-produce.jpg" class="hero-photo hero-photo-main"
+                             alt="Fresh capsicum, cucumbers, lemons, mangoes, apples and strawberries"
+                             width="1200" height="1500">
+                        <img src="images/hero-milk-nuts.jpg" class="hero-photo hero-photo-side"
+                             alt="A glass of milk with almonds, walnuts, pistachios and dates"
+                             width="1200" height="900">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>   
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        
+        <!-- Fruits Section -->
+<section id="fruits" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 border-bottom pb-2 mb-4">
+                    <div>
+                        <h2 class="h4 mb-1">Seasonal Fruits</h2>
+                        <p class="text-muted small mb-0">Hand-picked, farm fresh</p>
+                    </div>
+                    <span class="badge rounded-pill bg-success-subtle text-success" data-product-count>0 items</span>
+                </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        
+        <!-- Fruit 1 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/App.jpg" class="card-img-top" alt="Apple" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Apple</h5>
+                    <p class="text-muted small">Fresh & Crisp</p>
+                    <h6 class="text-success fw-bold mb-3">₹224 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 2 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/ban.jpeg" class="card-img-top" alt="Banana" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Banana</h5>
+                    <p class="text-muted small">Organic Tropical</p>
+                    <h6 class="text-success fw-bold mb-3">₹62 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 3 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/ora.jpg" class="card-img-top" alt="Orange" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Orange</h5>
+                    <p class="text-muted small">Juicy Citrus</p>
+                    <h6 class="text-success fw-bold mb-3">₹116 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 4 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/man.jpg" class="card-img-top" alt="Mango" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Mango</h5>
+                    <p class="text-muted small">Sweet & Ripe</p>
+                    <h6 class="text-success fw-bold mb-3">₹179 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 5 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/str.jpg" class="card-img-top" alt="Strawberry" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Strawberry</h5>
+                    <p class="text-muted small">Fresh Berries</p>
+                    <h6 class="text-success fw-bold mb-3">₹359 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 6 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/blu.jpeg" class="card-img-top" alt="Blueberry" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Blueberry</h5>
+                    <p class="text-muted small">Antioxidant Rich</p>
+                    <h6 class="text-success fw-bold mb-3">₹404 / pack</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 7 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/gra.jpg" class="card-img-top" alt="Grapes" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Grapes</h5>
+                    <p class="text-muted small">Seedless Red</p>
+                    <h6 class="text-success fw-bold mb-3">₹269 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 8 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/pine.jpg" class="card-img-top" alt="Pineapple" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pineapple</h5>
+                    <p class="text-muted small">Sweet Tropical</p>
+                    <h6 class="text-success fw-bold mb-3">₹296 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 9 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/wat.avif" class="card-img-top" alt="Watermelon" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Watermelon</h5>
+                    <p class="text-muted small">Hydrating & Sweet</p>
+                    <h6 class="text-success fw-bold mb-3">₹539 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fruit 10 -->
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/pea.jpeg" class="card-img-top" alt="Peach" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Peach</h5>
+                    <p class="text-muted small">Juicy Orchard</p>
+                    <h6 class="text-success fw-bold mb-3">₹197 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+<!-- Fruit 11 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/ava.jpg" class="card-img-top" alt="Avocado" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Avocado</h5>
+            <p class="text-muted small">Creamy & Fresh</p>
+            <h6 class="text-success fw-bold mb-3">₹134 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 12 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/kiwi.jpg" class="card-img-top" alt="Kiwi" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Kiwi</h5>
+            <p class="text-muted small">Tangy & Sweet</p>
+            <h6 class="text-success fw-bold mb-3">₹71 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 13 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/lem.avif" class="card-img-top" alt="Lemon" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Lemon</h5>
+            <p class="text-muted small">Fresh Yellow</p>
+            <h6 class="text-success fw-bold mb-3">₹44 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 14 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/lime.jpeg" class="card-img-top" alt="Lime" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Lime</h5>
+            <p class="text-muted small">Zesty Green</p>
+            <h6 class="text-success fw-bold mb-3">₹35 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 15 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/cher.jpg" class="card-img-top" alt="Cherry" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Cherry</h5>
+            <p class="text-muted small">Sweet Red</p>
+            <h6 class="text-success fw-bold mb-3">₹449 / kg</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 16 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/plum.jpeg" class="card-img-top" alt="Plum" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Plum</h5>
+            <p class="text-muted small">Juicy Black</p>
+            <h6 class="text-success fw-bold mb-3">₹170 / kg</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 17 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/pear.jpeg" class="card-img-top" alt="Pear" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Pear</h5>
+            <p class="text-muted small">Sweet Anjou</p>
+            <h6 class="text-success fw-bold mb-3">₹179 / kg</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 18 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/rasp.jpeg" class="card-img-top" alt="Raspberry" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Raspberry</h5>
+            <p class="text-muted small">Fresh Pack</p>
+            <h6 class="text-success fw-bold mb-3">₹359 / pack</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 19 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/blac.jpg" class="card-img-top" alt="Blackberry" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Blackberry</h5>
+            <p class="text-muted small">Organic Berries</p>
+            <h6 class="text-success fw-bold mb-3">₹341 / pack</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fruit 20 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/pom.jpg" class="card-img-top" alt="Pomegranate" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Pomegranate</h5>
+            <p class="text-muted small">Rich Arils</p>
+            <h6 class="text-success fw-bold mb-3">₹269 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+    </div>
+</section>
+
+
+        <!-- Vegetables Section -->
+        <section id="vegetables" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 border-bottom pb-2 mb-4">
+                    <div>
+                        <h2 class="h4 mb-1">Farm Fresh Vegetables</h2>
+                        <p class="text-muted small mb-0">Crisp, local and seasonal</p>
+                    </div>
+                    <span class="badge rounded-pill bg-success-subtle text-success" data-product-count>0 items</span>
+                </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/tom.jpg" class="card-img-top" alt="Tomato" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tomato</h5>
+                    <p class="text-muted small">Fresh Roma</p>
+                    <h6 class="text-success fw-bold mb-3">₹179 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/pot.jpeg" class="card-img-top" alt="Potato" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Potato</h5>
+                    <p class="text-muted small">Russet Potatoes</p>
+                    <h6 class="text-success fw-bold mb-3">₹89 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/oni.jpeg" class="card-img-top" alt="Onion" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Onion</h5>
+                    <p class="text-muted small">Yellow Onions</p>
+                    <h6 class="text-success fw-bold mb-3">₹80 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/car.webp" class="card-img-top" alt="Carrot" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Carrot</h5>
+                    <p class="text-muted small">Sweet Crunch</p>
+                    <h6 class="text-success fw-bold mb-3">₹134 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/bro.avif" class="card-img-top" alt="Broccoli" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Broccoli</h5>
+                    <p class="text-muted small">Organic Crown</p>
+                    <h6 class="text-success fw-bold mb-3">₹269 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/cuc.webp" class="card-img-top" alt="Cucumber" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cucumber</h5>
+                    <p class="text-muted small">Crisp & Green</p>
+                    <h6 class="text-success fw-bold mb-3">₹71 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/spi.jpeg" class="card-img-top" alt="Spinach" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Spinach</h5>
+                    <p class="text-muted small">Baby Leaf</p>
+                    <h6 class="text-success fw-bold mb-3">₹224 / pack</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/bell.jpg" class="card-img-top" alt="Bell Pepper" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Bell Pepper</h5>
+                    <p class="text-muted small">Fresh Red & Green</p>
+                    <h6 class="text-success fw-bold mb-3">₹116 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/gar.jpg" class="card-img-top" alt="Garlic" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Garlic</h5>
+                    <p class="text-muted small">Aromatic Bulb</p>
+                    <h6 class="text-success fw-bold mb-3">₹45 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/let.webp" class="card-img-top" alt="Lettuce" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lettuce</h5>
+                    <p class="text-muted small">Fresh Iceberg</p>
+                    <h6 class="text-success fw-bold mb-3">₹170 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/cau.avif" class="card-img-top" alt="Cauliflower" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cauliflower</h5>
+                    <p class="text-muted small">Fresh Head</p>
+                    <h6 class="text-success fw-bold mb-3">₹314 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/zuc.jpg" class="card-img-top" alt="Zucchini" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Zucchini</h5>
+                    <p class="text-muted small">Green Squash</p>
+                    <h6 class="text-success fw-bold mb-3">₹152 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/mus.jpeg" class="card-img-top" alt="Mushroom" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Mushroom</h5>
+                    <p class="text-muted small">White Button</p>
+                    <h6 class="text-success fw-bold mb-3">₹269 / pack</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/egg.jpg" class="card-img-top" alt="Eggplant" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Eggplant</h5>
+                    <p class="text-muted small">Purple Globe</p>
+                    <h6 class="text-success fw-bold mb-3">₹179 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/corn.jpeg" class="card-img-top" alt="Corn" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Corn</h5>
+                    <p class="text-muted small">Sweet Yellow</p>
+                    <h6 class="text-success fw-bold mb-3">₹54 / pc</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Veggie 16 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/cab.jpg" class="card-img-top" alt="Cabbage" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Cabbage</h5>
+            <p class="text-muted small">Green Crisp</p>
+            <h6 class="text-success fw-bold mb-3">₹71 / kg</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Veggie 17 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/cel.jpeg" class="card-img-top" alt="Celery" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Celery</h5>
+            <p class="text-muted small">Fresh Stalk</p>
+            <h6 class="text-success fw-bold mb-3">₹134 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Veggie 18 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/rad.jpeg" class="card-img-top" alt="Radish" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Radish</h5>
+            <p class="text-muted small">Red Crisp</p>
+            <h6 class="text-success fw-bold mb-3">₹89 / pc</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Veggie 19 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/asp.jpg" class="card-img-top" alt="Asparagus" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Asparagus</h5>
+            <p class="text-muted small">Tender Green</p>
+            <h6 class="text-success fw-bold mb-3">₹359 / kg</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Veggie 20 -->
+<div class="col">
+    <div class="card h-100 product-card shadow-sm">
+        <img src="images/swe.jpg" class="card-img-top" alt="Sweet Potato" loading="lazy" decoding="async">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Sweet Potato</h5>
+            <p class="text-muted small">Organic Yam</p>
+            <h6 class="text-success fw-bold mb-3">₹116 / kg</h6>
+            <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+    </div>
+</section>
+
+        <!-- Meat & Fish Section -->
+<section id="meat" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 border-bottom pb-2 mb-4">
+                    <div>
+                        <h2 class="h4 mb-1">Meat & Seafood</h2>
+                        <p class="text-muted small mb-0">Cut fresh every morning</p>
+                    </div>
+                    <span class="badge rounded-pill bg-success-subtle text-success" data-product-count>0 items</span>
+                </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/chic bre.avif" class="card-img-top" alt="Chicken Breast" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Chicken Breast</h5><p class="text-muted small">Boneless Skinless</p><h6 class="text-success fw-bold mb-3">₹359 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/chic thig.jpg" class="card-img-top" alt="Chicken Thighs" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Chicken Thighs</h5><p class="text-muted small">Bone-In Fresh</p><h6 class="text-success fw-bold mb-3">₹224 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/chic.jpg" class="card-img-top" alt="Whole Chicken" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Whole Chicken</h5><p class="text-muted small">Farm Fresh</p><h6 class="text-success fw-bold mb-3">₹161 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/pork.webp" class="card-img-top" alt="Pork Tenderloin" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Pork Tenderloin</h5><p class="text-muted small">Lean Pork</p><h6 class="text-success fw-bold mb-3">₹404 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/lamb.jpg" class="card-img-top" alt="Lamb Chops" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Lamb Chops</h5><p class="text-muted small">Fresh Cut</p><h6 class="text-success fw-bold mb-3">₹1169 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/salm.jpeg" class="card-img-top" alt="Salmon Fillet" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Salmon Fillet</h5><p class="text-muted small">Atlantic Wild</p><h6 class="text-success fw-bold mb-3">₹899 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/tuna.jpg" class="card-img-top" alt="Tuna Steak" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Tuna Steak</h5><p class="text-muted small">Ahi Grade</p><h6 class="text-success fw-bold mb-3">₹989 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/fres.jpeg" class="card-img-top" alt="Fresh Shrimp" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Fresh Shrimp</h5><p class="text-muted small">Peeled & Deveined</p><h6 class="text-success fw-bold mb-3">₹719 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/cod.jpg" class="card-img-top" alt="Cod Fillet" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Cod Fillet</h5><p class="text-muted small">Wild Pacific</p><h6 class="text-success fw-bold mb-3">₹674 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/crab leg.jpg" class="card-img-top" alt="Crab Legs" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Crab Legs</h5><p class="text-muted small">Snow Crab</p><h6 class="text-success fw-bold mb-3">₹1349 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/lobs.jpg" class="card-img-top" alt="Lobster Tail" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Lobster Tail</h5><p class="text-muted small">Cold Water</p><h6 class="text-success fw-bold mb-3">₹1529 / pc</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+     
+    </div>
+</section>
+
+        <!-- Nuts & Seeds Section -->
+<section id="nuts" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 border-bottom pb-2 mb-4">
+                    <div>
+                        <h2 class="h4 mb-1">Nuts & Seeds</h2>
+                        <p class="text-muted small mb-0">Raw, roasted and wholesome</p>
+                    </div>
+                    <span class="badge rounded-pill bg-success-subtle text-success" data-product-count>0 items</span>
+                </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/alm.jpeg" class="card-img-top" alt="Almonds" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Almonds</h5>
+                    <p class="text-muted small">Raw Natural</p>
+                    <h6 class="text-success fw-bold mb-3">₹629 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/wal.jpg" class="card-img-top" alt="Walnuts" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Walnuts</h5>
+                    <p class="text-muted small">Shelled Halves</p>
+                    <h6 class="text-success fw-bold mb-3">₹674 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/cas.jpg" class="card-img-top" alt="Cashews" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cashews</h5>
+                    <p class="text-muted small">Roasted Whole</p>
+                    <h6 class="text-success fw-bold mb-3">₹809 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/pis.jpeg" class="card-img-top" alt="Pistachios" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pistachios</h5>
+                    <p class="text-muted small">Roasted Salted</p>
+                    <h6 class="text-success fw-bold mb-3">₹854 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/peanut.jpg" class="card-img-top" alt="Peanuts" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Peanuts</h5>
+                    <p class="text-muted small">Dry Roasted</p>
+                    <h6 class="text-success fw-bold mb-3">₹296 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/peca.jpg" class="card-img-top" alt="Pecans" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pecans</h5>
+                    <p class="text-muted small">Fresh Halves</p>
+                    <h6 class="text-success fw-bold mb-3">₹899 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/hazle.jpg" class="card-img-top" alt="Hazelnuts" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Hazelnuts</h5>
+                    <p class="text-muted small">Raw Shelled</p>
+                    <h6 class="text-success fw-bold mb-3">₹764 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/pinenut.jpg" class="card-img-top" alt="Pine Nuts" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pine Nuts</h5>
+                    <p class="text-muted small">Pesto Grade</p>
+                    <h6 class="text-success fw-bold mb-3">₹1529 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/chia.jpeg" class="card-img-top" alt="Chia Seeds" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Chia Seeds</h5>
+                    <p class="text-muted small">Black Organic</p>
+                    <h6 class="text-success fw-bold mb-3">₹449 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/pump.jpg" class="card-img-top" alt="Pumpkin Seeds" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pumpkin Seeds</h5>
+                    <p class="text-muted small">Pepitas Raw</p>
+                    <h6 class="text-success fw-bold mb-3">₹539 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div></div></div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/ses.jpg" class="card-img-top" alt="Sesame Seeds" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Sesame Seeds</h5>
+                    <p class="text-muted small">White Hulled</p>
+                    <h6 class="text-success fw-bold mb-3">₹359 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <img src="images/mix.avif" class="card-img-top" alt="Mixed Nuts" loading="lazy" decoding="async">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Mixed Nuts</h5>
+                    <p class="text-muted small">Deluxe Mix</p>
+                    <h6 class="text-success fw-bold mb-3">₹809 / kg</h6>
+                    <button class="btn btn-success mt-auto add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Grains Section -->
+<section id="grains" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 border-bottom pb-2 mb-4">
+                    <div>
+                        <h2 class="h4 mb-1">Grains & Bread</h2>
+                        <p class="text-muted small mb-0">Everyday staples</p>
+                    </div>
+                    <span class="badge rounded-pill bg-success-subtle text-success" data-product-count>0 items</span>
+                </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/whi.avif" class="card-img-top" alt="White Rice" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">White Rice</h5><p class="text-muted small">Long Grain</p><h6 class="text-success fw-bold mb-3">₹116 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/brown.jpg" class="card-img-top" alt="Brown Rice" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Brown Rice</h5><p class="text-muted small">Whole Grain</p><h6 class="text-success fw-bold mb-3">₹134 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/bas.avif" class="card-img-top" alt="Basmati Rice" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Basmati Rice</h5><p class="text-muted small">Aromatic Long</p><h6 class="text-success fw-bold mb-3">₹206 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/jas.jpeg" class="card-img-top" alt="Jasmine Rice" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Jasmine Rice</h5><p class="text-muted small">Fragrant White</p><h6 class="text-success fw-bold mb-3">₹179 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/rol.jpg" class="card-img-top" alt="Rolled Oats" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Rolled Oats</h5><p class="text-muted small">Old Fashioned</p><h6 class="text-success fw-bold mb-3">₹170 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/wheat.jpg" class="card-img-top" alt="Wheat Flour" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Wheat Flour</h5><p class="text-muted small">All-Purpose</p><h6 class="text-success fw-bold mb-3">₹80 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/whole.jpeg" class="card-img-top" alt="Whole Wheat Bread" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Whole Wheat Bread</h5><p class="text-muted small">Fresh Baked</p><h6 class="text-success fw-bold mb-3">₹251 / pc</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/white bre.avif" class="card-img-top" alt="White Bread" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">White Bread</h5><p class="text-muted small">Sandwich Loaf</p><h6 class="text-success fw-bold mb-3">₹197 / pc</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/spe.jpeg" class="card-img-top" alt="Spaghetti" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Spaghetti</h5><p class="text-muted small">Durum Wheat</p><h6 class="text-success fw-bold mb-3">₹125 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/mac.jpg" class="card-img-top" alt="Macaroni" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Macaroni</h5><p class="text-muted small">Elbow Pasta</p><h6 class="text-success fw-bold mb-3">₹116 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/bar.jpg" class="card-img-top" alt="Barley" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Barley</h5><p class="text-muted small">Pearl Grain</p><h6 class="text-success fw-bold mb-3">₹143 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/corn meal.webp" class="card-img-top" alt="Cornmeal" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Cornmeal</h5><p class="text-muted small">Yellow Ground</p><h6 class="text-success fw-bold mb-3">₹107 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/mill.jpg" class="card-img-top" alt="Millet" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Millet</h5><p class="text-muted small">Hulled Grain</p><h6 class="text-success fw-bold mb-3">₹161 / kg</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+    </div>
+</section>
+        <!-- Dairy & Eggs Section -->
+<section id="animal-products" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 border-bottom pb-2 mb-4">
+                    <div>
+                        <h2 class="h4 mb-1">Dairy & Eggs</h2>
+                        <p class="text-muted small mb-0">Chilled and delivered fresh</p>
+                    </div>
+                    <span class="badge rounded-pill bg-success-subtle text-success" data-product-count>0 items</span>
+                </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+        
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/milk.jpg" class="card-img-top" alt="Whole Milk" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Whole Milk</h5><p class="text-muted small">Fresh Dairy</p><h6 class="text-success fw-bold mb-3">₹314 / litre</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/skim.jpg" class="card-img-top" alt="Skim Milk" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Skim Milk</h5><p class="text-muted small">Fat Free</p><h6 class="text-success fw-bold mb-3">₹296 / litre</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/chedd.avif" class="card-img-top" alt="Cheddar Cheese" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Cheddar Cheese</h5><p class="text-muted small">Sharp Block</p><h6 class="text-success fw-bold mb-3">₹359 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/moz.jpg" class="card-img-top" alt="Mozzarella Cheese" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Mozzarella</h5><p class="text-muted small">Fresh Ball</p><h6 class="text-success fw-bold mb-3">₹386 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/greek.jpg" class="card-img-top" alt="Greek Yogurt" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Greek Yogurt</h5><p class="text-muted small">Plain High Protein</p><h6 class="text-success fw-bold mb-3">₹449 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/plain.jpeg" class="card-img-top" alt="Plain Yogurt" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Plain Yogurt</h5><p class="text-muted small">Whole Milk</p><h6 class="text-success fw-bold mb-3">₹314 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/salt.jpg" class="card-img-top" alt="Salted Butter" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Salted Butter</h5><p class="text-muted small">Sweet Cream</p><h6 class="text-success fw-bold mb-3">₹350 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/unsalt.jpg" class="card-img-top" alt="Unsalted Butter" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Unsalted Butter</h5><p class="text-muted small">Baking Grade</p><h6 class="text-success fw-bold mb-3">₹350 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/heavy.jpeg" class="card-img-top" alt="Heavy Cream" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Heavy Cream</h5><p class="text-muted small">Whipping Cream</p><h6 class="text-success fw-bold mb-3">₹269 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/sour.jpg" class="card-img-top" alt="Sour Cream" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Sour Cream</h5><p class="text-muted small">Original Cultured</p><h6 class="text-success fw-bold mb-3">₹179 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/cottage.jpg" class="card-img-top" alt="Cottage Cheese" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Cottage Cheese</h5><p class="text-muted small">Lowfat Curd</p><h6 class="text-success fw-bold mb-3">₹242 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/cream.jpeg" class="card-img-top" alt="Cream Cheese" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Cream Cheese</h5><p class="text-muted small">Original Spread</p><h6 class="text-success fw-bold mb-3">₹224 / pack</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/large.webp" class="card-img-top" alt="Large Eggs" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Large Eggs</h5><p class="text-muted small">Grade A White</p><h6 class="text-success fw-bold mb-3">₹269 / dozen</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/org.jpg" class="card-img-top" alt="Organic Eggs" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Organic Eggs</h5><p class="text-muted small">Free Range Brown</p><h6 class="text-success fw-bold mb-3">₹404 / dozen</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/almilk.avif" class="card-img-top" alt="Almond Milk" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Almond Milk</h5><p class="text-muted small">Unsweetened</p><h6 class="text-success fw-bold mb-3">₹296 / litre</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/oatmilk.jpg" class="card-img-top" alt="Oat Milk" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Oat Milk</h5><p class="text-muted small">Creamy Original</p><h6 class="text-success fw-bold mb-3">₹359 / litre</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+        <div class="col"><div class="card h-100 product-card shadow-sm"><img src="images/soymlik.jpeg" class="card-img-top" alt="Soy Milk" loading="lazy" decoding="async"><div class="card-body d-flex flex-column"><h5 class="card-title">Soy Milk</h5><p class="text-muted small">Organic Original</p><h6 class="text-success fw-bold mb-3">₹287 / litre</h6><button class="btn btn-success mt-auto add-to-cart">Add to Cart</button></div></div></div>
+    </div>
+</section>
+
+        <div id="no-results" class="text-center text-muted py-5 d-none"></div>
+
+    </main>
+
+    <!-- Footer -->
+    <section class="container my-5">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="why-card p-4 shadow-sm h-100">
+                <i class="fas fa-truck-fast text-success fs-4 mb-3"></i>
+                <h2 class="h6 fw-bold mb-1">Free delivery over &#8377;499</h2>
+                <p class="text-muted small mb-0">Order before 6 pm for same-day delivery in the city.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="why-card p-4 shadow-sm h-100">
+                <i class="fas fa-seedling text-success fs-4 mb-3"></i>
+                <h2 class="h6 fw-bold mb-1">Fresh from local farms</h2>
+                <p class="text-muted small mb-0">Picked in the morning, on your table the same day.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="why-card p-4 shadow-sm h-100">
+                <i class="fas fa-shield-halved text-success fs-4 mb-3"></i>
+                <h2 class="h6 fw-bold mb-1">Simple, safe checkout</h2>
+                <p class="text-muted small mb-0">Pay by UPI, card or cash on delivery.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <h2 class="h5 fw-bold text-white mb-2"><i class="fas fa-leaf text-success me-1"></i>FreshMarket</h2>
+                <p class="text-white-50 small mb-3">Farm-fresh groceries, picked daily and delivered to your door.</p>
+                <p class="text-white-50 small mb-0">
+                    <i class="fas fa-phone me-2"></i>+91 98765 43210<br>
+                    <i class="fas fa-envelope me-2"></i>hello@freshmarket.example
+                </p>
+            </div>
+            <div class="col-6 col-lg-2">
+                <h3 class="h6 text-uppercase text-white-50 small fw-semibold mb-3">Shop</h3>
+                <ul class="list-unstyled small mb-0 d-grid gap-2">
+                    <li><a href="index.html#fruits">Fruits</a></li>
+                    <li><a href="index.html#vegetables">Vegetables</a></li>
+                    <li><a href="index.html#meat">Meat &amp; Fish</a></li>
+                    <li><a href="index.html#nuts">Nuts &amp; Seeds</a></li>
+                    <li><a href="index.html#grains">Grains</a></li>
+                    <li><a href="index.html#animal-products">Dairy &amp; Eggs</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-3">
+                <h3 class="h6 text-uppercase text-white-50 small fw-semibold mb-3">Account</h3>
+                <ul class="list-unstyled small mb-0 d-grid gap-2">
+                    <li><a href="signin.html">Sign in</a></li>
+                    <li><a href="signup.html">Create an account</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h3 class="h6 text-uppercase text-white-50 small fw-semibold mb-3">Delivery</h3>
+                <ul class="list-unstyled small text-white-50 mb-0 d-grid gap-2">
+                    <li><i class="fas fa-truck-fast text-success me-2"></i>Free delivery over &#8377;499</li>
+                    <li><i class="fas fa-clock text-success me-2"></i>Same-day within the city</li>
+                    <li><i class="fas fa-shield-halved text-success me-2"></i>Secure checkout</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-secondary my-4">
+        <div class="d-flex flex-wrap justify-content-between gap-2 text-white-50 small">
+            <span>&copy; 2026 FreshMarket. All rights reserved.</span>
+            <span>Fresh food, honestly priced</span>
+        </div>
+    </div>
+</footer>
+
+    <!-- Cart Modal HTML-->
+
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="cartModalLabel"><i class="fas fa-shopping-basket me-2 text-success"></i>Your Shopping Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-empty-msg" class="text-center py-4 text-muted">
+                    Your cart is currently empty.
+                </div>
+                <div class="table-responsive" id="cart-table-wrapper" style="display: none;">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th style="width: 130px;">Quantity</th>
+                                <th class="text-end">Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items-body"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <div class="fs-5 fw-bold">
+                    Total: <span class="text-success" id="cart-total-price">₹0</span>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                    <button type="button" class="btn btn-success" id="checkout-btn" disabled>Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Bootstrap 5 JS Bundle (Includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Simple JavaScript for Cart Interactivity -->
+<script src="api.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
